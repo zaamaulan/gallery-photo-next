@@ -33,11 +33,11 @@ export default async function NavBar() {
     //     ))}
     //   </NavigationMenuList>
     // </NavigationMenu>
-    <nav className="mx-auto flex h-16 w-full max-w-screen-xl items-center justify-between">
-      <span>
+    <nav className="flex h-16 items-center justify-center uppercase">
+      {/* <span>
         <Link href={menus[0].link}>ShutterScape</Link>
-      </span>
-      <ul className="flex gap-6">
+      </span> */}
+      <ul className="flex gap-10 text-sm">
         {menus.map((menu) => (
           <li key={menu.title}>
             <Link href={menu.link}>{menu.title}</Link>

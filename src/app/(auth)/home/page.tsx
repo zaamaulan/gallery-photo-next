@@ -1,4 +1,3 @@
-
 import prisma from "@/lib/prisma";
 import Image from "next/image";
 import React from "react";
@@ -10,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import SocialMedia from "@/components/SocialMedia";
 
 const LoginCover = "/assets/images/login-cover.png";
 
@@ -21,7 +21,10 @@ export default function Landing() {
   // });
   return (
     <>
-      <section>Landing</section>
+      <section>
+        
+      </section>
+
       {/* <Image src={LoginCover} width={200} height={200} alt="login cover" /> */}
       {/* <Carousel
         plugins={[
