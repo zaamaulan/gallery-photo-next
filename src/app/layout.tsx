@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { Playfair } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
-const lato = Lato({
+const playfair = Playfair({
   subsets: ["latin"],
-  weight: ["100", "300", "400", "700", "900"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -19,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={lato.className}>{children}</body>
+      <body className={playfair.className}>
+        <>
+          {children}
+          <Toaster />
+        </>
+      </body>
     </html>
   );
 }

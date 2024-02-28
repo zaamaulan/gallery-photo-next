@@ -12,7 +12,10 @@ async function main() {
     const createdUser = await prisma.user.create({
       data: {
         id: faker.string.uuid(),
-        username: faker.person.firstName().toLowerCase() + '_' + faker.person.lastName().toLowerCase(),
+        username:
+          faker.person.firstName().toLowerCase() +
+          "_" +
+          faker.person.lastName().toLowerCase(),
         email: faker.internet.email({ provider: "example.com" }).toLowerCase(),
         password:
           "$2a$12$XH2dxxlfp/.8z7qHYqdqFOhCZMHEmQtsGpcqHawK61pFH79V1CApS",
@@ -21,7 +24,29 @@ async function main() {
         createdAt: faker.date.past(),
       },
     });
-    createdUsers.push(createdUser); // Menambahkan hasil operasi pembuatan ujian ke dalam array
+    createdUsers.push(createdUser); 
+  }
+
+  const createPhotos = [];
+    for (let i = 0; i < createdUsers.length; i++) {
+        if (createdUsers.length > 0 && createdUsers[i]) {
+          const userId = createdUsers[i].id; 
+          for (let j = 0; j < 1; j++) {
+            const createdPhoto = await prisma.photo.create({
+              data: {
+                id: faker.string.uuid(),
+                userId: userId,
+                title: faker.lorem.words({min: 3, max:8}),
+                description: faker.lorem.words(30),
+                path: `/uploads/images/0_${i + 1}.png`,
+                publishedAt: faker.date.past(),
+                createdAt: faker.date.past(),
+              },
+            });
+            createPhotos.push(createdPhoto); 
+          }
+        }
+      }
   }
   // const createdExams = [];
   // for (let i = 0; i < 25; i++) {
@@ -92,7 +117,7 @@ async function main() {
   //     createdResults.push(createResult);
   //   }
   // }
-}
+
 
 main()
   .catch((e) => console.error(e))
