@@ -1,15 +1,16 @@
+import { db } from "@/lib/db";
 import { fakerID_ID as faker } from "@faker-js/faker";
-import prisma from "../lib/prisma";
+
 
 async function main() {
-  await prisma.user.deleteMany();
-  await prisma.photo.deleteMany();
-  await prisma.comment.deleteMany();
-  await prisma.like.deleteMany();
+  await db.user.deleteMany();
+  await db.photo.deleteMany();
+  await db.comment.deleteMany();
+  await db.like.deleteMany();
 
   const createdUsers = [];
   for (let i = 0; i < 20; i++) {
-    const createdUser = await prisma.user.create({
+    const createdUser = await db.user.create({
       data: {
         id: faker.string.uuid(),
         username:
@@ -32,7 +33,7 @@ async function main() {
         if (createdUsers.length > 0 && createdUsers[i]) {
           const userId = createdUsers[i].id; 
           for (let j = 0; j < 1; j++) {
-            const createdPhoto = await prisma.photo.create({
+            const createdPhoto = await db.photo.create({
               data: {
                 id: faker.string.uuid(),
                 userId: userId,
@@ -50,7 +51,7 @@ async function main() {
   }
   // const createdExams = [];
   // for (let i = 0; i < 25; i++) {
-  //   const createdExam = await prisma.photo.create({
+  //   const createdExam = await db.photo.create({
   //     data: {
   //       id: faker.string.uuid(),
   //       examName: faker.lorem.words(3),
@@ -68,7 +69,7 @@ async function main() {
   //   if (createdExams.length > 0 && createdExams[i]) {
   //     const examId = createdExams[i].id; // Mengambil id dari ujian yang baru saja dibuat
   //     for (let j = 0; j < 25; j++) {
-  //       const createdQuestion = await prisma.question.create({
+  //       const createdQuestion = await db.question.create({
   //         data: {
   //           id: faker.string.uuid(),
   //           question: faker.lorem.words({ min: 8, max: 25 }),
@@ -85,7 +86,7 @@ async function main() {
   //   for (let j = 0; j < 5; j++) {
   //     // Perulangan dari 0 hingga 4 (5 opsi)
   //     const isCorrect = j === faker.number.int({ min: 0, max: 4 }); // Menghasilkan nilai acak untuk isCorrect
-  //     const createdOption = await prisma.option.create({
+  //     const createdOption = await db.option.create({
   //       data: {
   //         id: faker.string.uuid(),
   //         option: faker.lorem.words({ min: 8, max: 15 }),
@@ -102,7 +103,7 @@ async function main() {
   //   const userId = createdUsers[i].id;
 
   //   for (let j = 0; j < createdExams.length; j++) {
-  //     const createResult = await prisma.result.create({
+  //     const createResult = await db.result.create({
   //       data: {
   //         id: faker.string.uuid(),
   //         examsId: examId,
@@ -122,5 +123,5 @@ async function main() {
 main()
   .catch((e) => console.error(e))
   .finally(async () => {
-    await prisma.$disconnect();
+    await db.$disconnect();
   });
