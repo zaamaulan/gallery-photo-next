@@ -2,11 +2,10 @@ import SignInForm from "@/components/form/SignInForm";
 import Link from "next/link";
 import React from "react";
 
-export default function Login() {
+export default function SignIn() {
   return (
-    <div>
+    <div className="w-full p-3 flex items-center justify-center h-dvh bg-zinc-50">
       <SignInForm />
-      <p>belum punya akun? <Link href={'/auth/sign-up'}>Sign Up</Link></p>
     </div>
   );
 }

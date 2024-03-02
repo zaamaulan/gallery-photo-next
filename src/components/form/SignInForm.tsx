@@ -6,6 +6,20 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useToast } from "@/components/ui/use-toast";
+import Image from "next/image";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Link from "next/link";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Button } from "../ui/button";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email(),
@@ -49,26 +63,57 @@ export default function SignInForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          className="border border-black focus:outline-none"
-          {...register("email")}
-        />
-        {errors.email && <span>{errors.email.message}</span>}
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          className="border border-black focus:outline-none"
-          type="password"
-          {...register("password")}
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-      </div>
+    <>
+      <Card className="flex items-center p-2 w-full md:w-fit">
+        <div className="relative h-[38rem] w-[26rem] hidden md:block">
+          <Image
+            src={"/assets/images/login-cover.png"}
+            fill
+            alt="login cover"
+            className="rounded-lg object-cover"
+          />
+        </div>
+        <div className="flex w-[30rem] flex-col justify-between md:px-10">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl">Sign In to ShutterScape</CardTitle>
+            <CardDescription>
+              Explore, Share, and Connect with ShutterScape Community
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <div className="space-y-2">
+                <Label className="font-medium" htmlFor="email">
+                  Email
+                </Label>
+                <Input type="email" {...register("email")} />
+                {errors.email && (
+                  <p className="text-red-500">{errors.email.message}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label className="font-medium" htmlFor="password">
+                  Password
+                </Label>
+                <Input type="password" {...register("password")} />
+                {errors.password && (
+                  <p className="text-red-500">{errors.password.message}</p>
+                )}
+              </div>
 
-      <button type="submit">Submit</button>
-    </form>
+              <Button type="submit" className="w-full">
+                Sign In
+              </Button>
+            </form>
+          </CardContent>
+          <CardFooter className="mx-auto">
+            <p>
+              {"Don't have an account?"}{" "}
+              <Link href={"/auth/sign-up"}>Sign Up</Link>
+            </p>
+          </CardFooter>
+        </div>
+      </Card>
+    </>
   );
 }

@@ -1,7 +1,8 @@
 
 export const menus = [
-  {title: 'Home', icon: '', link: '/',},
+  {title: 'Home', icon: '', link: '/home',},
   {title: 'Gallery', icon: '', link: '/gallery',},
-  {title: 'About', icon: '', link: '/about',},
+  // {title: 'Album', icon: '', link: '/album',},
+  {title: 'Contact', icon: '', link: '/contact',},
   // {title: 'Setting', icon: '', link: '/setting',},
 ]

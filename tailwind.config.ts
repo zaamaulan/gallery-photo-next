@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -74,7 +74,35 @@ const config = {
       },
     },
   },
+  colors: {
+    pink: {
+      50: "#fff1f3",
+      100: "#ffe3e7",
+      200: "#ffc0cb",
+      300: "#ffa2b3",
+      400: "#fe6e8b",
+      500: "#f83b66",
+      600: "#e51951",
+      700: "#c20e43",
+      800: "#a20f40",
+      900: "#8a113c",
+      950: "#4d041c",
+    },
+    mauvelous: {
+      50: "#fef2f3",
+      100: "#fee5ea",
+      200: "#fccfd9",
+      300: "#f9a8ba",
+      400: "#f78da7",
+      500: "#ed4674",
+      600: "#d9255e",
+      700: "#b71950",
+      800: "#991849",
+      900: "#831844",
+      950: "#490821",
+    },
+  },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

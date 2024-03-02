@@ -64,6 +64,6 @@ export async function POST(req: Request) {
       { status: 201 },
     );
   } catch (error) {
-    return NextResponse.json({ message: "Error occurred" }, { status: 500 });
+    return NextResponse.json({ message: "Error occurred", error }, { status: 500 });
   }
 }

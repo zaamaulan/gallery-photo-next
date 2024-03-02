@@ -8,7 +8,7 @@ async function main() {
   await prisma.like.deleteMany();
 
   const createdUsers = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 20; i++) {
     const createdUser = await prisma.user.create({
       data: {
         id: faker.string.uuid(),
@@ -38,7 +38,7 @@ async function main() {
                 userId: userId,
                 title: faker.lorem.words({min: 3, max:8}),
                 description: faker.lorem.words(30),
-                path: `/uploads/images/0_${i + 1}.png`,
+                path: `/uploads/images/0_${i + 1}.webp`,
                 publishedAt: faker.date.past(),
                 createdAt: faker.date.past(),
               },

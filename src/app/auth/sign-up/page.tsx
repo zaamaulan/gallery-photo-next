@@ -1,12 +1,9 @@
 import SignUpForm from "@/components/form/SignUpForm";
-import Link from "next/link";
-import React from "react";
 
-export default function Register() {
+export default function SignUp() {
   return (
-    <div>
+    <div className="flex p-3 h-dvh w-full items-center justify-center bg-zinc-50">
       <SignUpForm />
-      <p>sudah punya akun? <Link href={'/auth/sign-in'}>Sign In</Link></p>
     </div>
   );
 }

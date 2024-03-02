@@ -27,10 +27,10 @@ interface SocialMediaProps {
 
 export default function SocialMedia({ className }: SocialMediaProps) {
   return (
-    <div className={cn("flex gap-4", className)}>
+    <div className={cn("flex gap-4 scale-[0.87] md:scale-100", className)}>
       {socialIcons.map((item) => (
         <Link href={item.url} key={item.name}>
-          <Image src={item.icon} width={26} height={26} alt={item.name} />
+          <Image src={item.icon} width={24} height={24} alt={item.name} />
         </Link>
       ))}
     </div>

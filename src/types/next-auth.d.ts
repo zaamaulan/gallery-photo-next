@@ -10,7 +10,7 @@ declare module "next-auth" {
       id: string;
       username: string;
     };
-    tokem: {
+    token: {
       id: string;
       username: string
     }

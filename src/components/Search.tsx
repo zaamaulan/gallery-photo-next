@@ -10,8 +10,8 @@ export default function Search({ placeholder }: { placeholder: string }) {
     <div className="relative flex flex-1 flex-shrink-0">
       <Image
         src={"/assets/icons/search.svg"}
-        width={26}
-        height={26}
+        width={24}
+        height={24}
         alt="search ic"
       />
       {/* <label htmlFor="search" className="sr-only">

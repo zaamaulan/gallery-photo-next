@@ -4,12 +4,30 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply text-pretty border-border;
   }
 
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(212, 213, 214);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } */
 
   :root {
     --background: 0 0% 100%;
@@ -71,5 +89,16 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+  }
+
+  .modal-backdrop {
+    @apply absolute inset-0 z-[1000] flex items-center justify-center bg-[rgba(0,0,0,0.7)];
+  }
+  .modal {
+    @apply relative flex h-auto w-full max-w-screen-2xl items-center justify-center border-[none] bg-[white] p-5 text-5xl font-medium;
+  }
+
+  .close-button {
+    @apply absolute right-2.5 top-2.5 flex h-12 w-12 cursor-pointer items-center justify-center border-[none] bg-transparent text-2xl font-medium after:text-[black] after:content-['x'] hover:bg-[#eee];
   }
 }
