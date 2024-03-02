@@ -6,6 +6,7 @@ import Image from "next/image";
 import React from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Link from "next/link";
+import { Photo } from "@/types/photo";
 
 export default async function Gallery() {
   const session = await getServerSession(authOptions);
@@ -16,7 +17,7 @@ export default async function Gallery() {
   return (
     <div className="mb-10">
       <section className="columns-2 gap-0 md:columns-3 mx-4 md:mx-20 xl:mx-60">
-        {photos.map((photo) => (
+        {photos.map((photo: Photo) => (
           <div
             key={photo.id}
             className="group relative mx-px mb-0.5 cursor-pointer xl:mx-0.5 xl:mb-1 "
