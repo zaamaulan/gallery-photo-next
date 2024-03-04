@@ -26,9 +26,9 @@ export default async function Gallery() {
   return (
     <div className="mb-10">
       <section className="mx-4 columns-2 gap-0 md:mx-20 md:columns-3 xl:mx-60">
-        {photos.map((photo: any) => {
+        {photos.map((photo) => {
           const isLikedByUser = photo.like.some(
-            (like: any) => like.userId === userId && like.photoId === photo.id,
+            (like) => like.userId === userId && like.photoId === photo.id,
           );
           return (
             <div
