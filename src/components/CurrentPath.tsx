@@ -10,7 +10,7 @@ export default function CurrentPath() {
 
   return (
     <>
-      <Link href={href}>
+      <Link href={href} className="flex items-center">
         <span className="text-sm md:text-xl">{result}</span>
       </Link>
     </>

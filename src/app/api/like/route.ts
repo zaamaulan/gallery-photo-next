@@ -8,7 +8,6 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { photoId, userId } = body;
-    console.log(body);
 
     const addLike = await db.like.create({
       // where: { id: photoId },

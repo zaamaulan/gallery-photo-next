@@ -5,6 +5,19 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Separator } from "./ui/separator";
+import Image from "next/image";
+
 // const components = [
 //   {
 //     title: "My Photos",
@@ -75,19 +88,51 @@ export default function NavBar({ session }: { session: any }) {
     //     </NavigationMenuItem>
     //   </NavigationMenuList>
     // </NavigationMenu>
-    <nav className="hidden h-10 items-center justify-center md:flex md:h-32">
-      {/* <span>
-          <Link href={menus[0].link}>ShutterScape</Link>
-        </span> */}
-      <ul className="flex gap-10 text-base">
-        {menus.map((menu) => (
-          <li key={menu.title}>
-            <Link href={menu.link}>{menu.title}</Link>
-          </li>
-        ))}
-        {/* {session ? <SignOut /> : <SignIn />} */}
-      </ul>
-    </nav>
+    <>
+      <nav className="hidden h-10 items-center justify-center md:flex md:h-32">
+        <ul className="flex gap-10 text-base">
+          {menus.map((menu) => (
+            <li key={menu.title}>
+              <Link href={menu.link}>{menu.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <Sheet>
+        <SheetTrigger className="md:hidden">
+          <Image
+            src={"/assets/icons/menu.svg"}
+            width={22}
+            height={22}
+            alt="menu icon"
+          ></Image>
+        </SheetTrigger>
+        <SheetContent side={"left"} className="space-y-4">
+          <SheetHeader className="text-left">
+            <SheetTitle className="text-xl">ShutterScape</SheetTitle>
+            <SheetDescription>
+              Unleash Your Creativity with ShutterScape
+            </SheetDescription>
+          </SheetHeader>
+          <Separator />
+          <SheetFooter>
+            <nav>
+              <ul className="flex flex-col gap-4 text-lg">
+                {menus.map((menu) => (
+                  <li key={menu.title}>
+                    <SheetClose asChild>
+                      <Link href={menu.link}>{menu.title}</Link>
+                    </SheetClose>
+                  </li>
+                ))}
+                {/* {session ? <SignOut /> : <SignIn />} */}
+              </ul>
+            </nav>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    </>
   );
 }
 

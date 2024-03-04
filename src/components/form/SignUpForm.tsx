@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm, UseFormGetFieldState } from "react-hook-form";
 import { z, ZodType } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,8 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { signUp } from "@/actions/auth-action";
+import { useFormState } from "react-dom";
 
 const FormSchema: ZodType<{
   username: string;
@@ -39,11 +41,12 @@ const FormSchema: ZodType<{
     message: "Password do not match",
   });
 
+
 export default function SignUpForm() {
-  const router = useRouter();
+  // const router = useRouter();
+  // const [error, setError] = useState("");
 
   const {
-    handleSubmit,
     register,
     formState: { errors },
   } = useForm({
@@ -56,28 +59,8 @@ export default function SignUpForm() {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    console.log(values);
-
-    const response = await fetch("/api/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: values.username,
-        email: values.email,
-        password: values.password,
-      }),
-    });
-
-    if (response.ok) {
-      router.push("/auth/sign-in");
-    }
-  };
-
   return (
-    <Card className="flex items-center p-2 w-full md:w-fit">
+    <Card className="flex w-full items-center p-2 md:w-fit">
       <div className="flex w-[30rem] flex-col justify-between md:px-10">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Sign Up to ShutterScape</CardTitle>
@@ -87,7 +70,21 @@ export default function SignUpForm() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form
+            // action={async (formData: FormData) => {
+            //   console.log(formData);
+
+            //   const result = await signUp(formData);
+
+            //   if (result?.error) {
+            //     setError(result.error);
+            //   } else {
+            //     router.push("/auth/sign-in");
+            //   }
+            // }}
+            action={signUp}
+            className="space-y-4"
+          >
             <div className="space-y-2">
               <Label className="font-medium" htmlFor="username">
                 Username
@@ -124,6 +121,9 @@ export default function SignUpForm() {
                 <p className="text-red-500">{errors.confirmPassword.message}</p>
               )}
             </div>
+            {/* <p aria-live="polite" className="sr-only">
+              {error}
+            </p> */}
 
             <Button type="submit" className="w-full">
               Sign Up
@@ -137,7 +137,7 @@ export default function SignUpForm() {
           </p>
         </CardFooter>
       </div>
-      <div className="relative h-[38rem] w-[26rem] hidden md:block">
+      <div className="relative hidden h-[38rem] w-[26rem] md:block">
         <Image
           src={"/assets/images/regist-cover.png"}
           fill
