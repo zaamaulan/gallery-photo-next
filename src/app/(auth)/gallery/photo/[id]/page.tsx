@@ -76,7 +76,7 @@ export default async function Photo({ params }: PhotoProps) {
               <h1 className="text-lg font-bold md:text-xl">Comments {photos?.comment.length}</h1>
               <Separator />
               <div className="space-y-4">
-                {photos?.comment.map((comment) => (
+                {photos?.comment.map((comment: any) => (
                   <div key={comment.id} className="cursor-default space-y-1">
                     <div className="group flex w-fit items-center gap-1">
                       <h1 className="text-base font-semibold md:text-lg">

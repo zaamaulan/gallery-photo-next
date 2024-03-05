@@ -41,7 +41,7 @@ export default async function LikedPhoto() {
       <section className="mx-4 columns-2 gap-0 md:mx-20 md:columns-3 xl:mx-60">
         {users?.like?.length! > 0 ? (
           <>
-            {users?.like.map((like) => {
+            {users?.like.map((like: any) => {
               const isLikedByUser = like.userId === userId;
               return (
                 <div
