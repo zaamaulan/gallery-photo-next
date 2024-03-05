@@ -10,8 +10,6 @@ const userSchema = z.object({
     .string()
     .min(1, "Password is required")
     .min(8, "Password must have than 8 characters"),
-  // fullname: z.string().min(1, "Fullname is required"),
-  // address: z.string().min(1, "Address is required"),
 });
 
 export async function GET() {

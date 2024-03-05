@@ -11,7 +11,7 @@
     @apply bg-background text-foreground;
   }
   
-  /* ::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 5px;
   }
 
@@ -21,13 +21,13 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgb(212, 213, 214);
+    background: #d4d5d6;
     border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  } */
+    background: #a5a5a5;
+  }
 
   :root {
     --background: 0 0% 100%;

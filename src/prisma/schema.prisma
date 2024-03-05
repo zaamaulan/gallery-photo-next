@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/client"
+  // output   = "./generated/client"
 }
 
 datasource db {
@@ -55,7 +55,7 @@ model Photo {
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @updatedAt @map(name: "updated_at")
 
-  user    User?     @relation(fields: [userId], references: [id])
+  user    User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
   comment Comment[]
   like    Like[]
 
@@ -70,8 +70,8 @@ model Comment {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  photo Photo? @relation(fields: [photoId], references: [id])
-  user  User?  @relation(fields: [userId], references: [id])
+  photo Photo? @relation(fields: [photoId], references: [id], onDelete: Cascade)
+  user  User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map(name: "comments")
 }
@@ -83,8 +83,8 @@ model Like {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  photo Photo? @relation(fields: [photoId], references: [id])
-  user  User?  @relation(fields: [userId], references: [id])
+  photo Photo? @relation(fields: [photoId], references: [id], onDelete: Cascade)
+  user  User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map(name: "likes")
 }
